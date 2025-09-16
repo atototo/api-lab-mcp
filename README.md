@@ -45,6 +45,47 @@ npm run build
 node dist/mcp/server.js
 ```
 
+## 로컬 설치 및 사용
+
+### Claude Code에 추가
+
+로컬에서 개발 중인 API Forge를 Claude Code에 추가:
+
+```bash
+# 1. 먼저 프로젝트 빌드
+cd /path/to/api-forge
+npm run build
+
+# 2. Claude Code 터미널에서 MCP 서버로 추가
+claude mcp add api-forge-local node /absolute/path/to/api-forge/dist/mcp/server.js
+
+# 예시 (실제 프로젝트 경로로 변경)
+claude mcp add api-forge-local node ~/projects/api-forge/dist/mcp/server.js
+```
+
+### Claude Desktop 설정
+
+Claude Desktop을 사용하는 경우 설정 JSON에 직접 추가:
+
+```json
+{
+  "mcpServers": {
+    "api-forge-local": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/api-forge/dist/mcp/server.js"
+      ],
+      "env": {
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}
+```
+
+경로를 실제 프로젝트 위치로 변경하세요.
+
 ## Claude Desktop 설정
 
 1. Claude Desktop 설정 열기

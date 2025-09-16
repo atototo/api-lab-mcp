@@ -1,0 +1,101 @@
+{
+  "tests": [
+    {
+      "name": "Get all posts",
+      "url": "https://jsonplaceholder.typicode.com/posts",
+      "method": "GET",
+      "assertions": [
+        {
+          "type": "status",
+          "expected": 200
+        },
+        {
+          "type": "responseTime",
+          "expected": 2000,
+          "operator": "lessThan"
+        }
+      ]
+    },
+    {
+      "name": "Get single post",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "method": "GET",
+      "assertions": [
+        {
+          "type": "status",
+          "expected": 200
+        },
+        {
+          "type": "bodyJsonPath",
+          "path": "$.id",
+          "expected": 1,
+          "operator": "equals"
+        }
+      ]
+    },
+    {
+      "name": "Create new post",
+      "url": "https://jsonplaceholder.typicode.com/posts",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "title": "Test Post",
+        "body": "This is a test post created by API Forge",
+        "userId": 1
+      },
+      "assertions": [
+        {
+          "type": "status",
+          "expected": 201
+        },
+        {
+          "type": "bodyJsonPath",
+          "path": "$.title",
+          "expected": "Test Post",
+          "operator": "equals"
+        }
+      ]
+    },
+    {
+      "name": "Update post",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "method": "PUT",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "id": 1,
+        "title": "Updated Post",
+        "body": "This post has been updated",
+        "userId": 1
+      },
+      "assertions": [
+        {
+          "type": "status",
+          "expected": 200
+        }
+      ]
+    },
+    {
+      "name": "Delete post",
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "method": "DELETE",
+      "assertions": [
+        {
+          "type": "status",
+          "expected": 200
+        }
+      ]
+    }
+  ],
+  "options": {
+    "parallel": false,
+    "stopOnFailure": false,
+    "delayBetween": 500,
+    "timeout": 10000,
+    "retryOnFailure": true,
+    "retryAttempts": 2
+  }
+}

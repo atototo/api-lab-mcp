@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "defaults": {
+    "timeout": 30000,
+    "retryAttempts": 2,
+    "retryDelay": 1000,
+    "headers": {
+      "User-Agent": "API-Forge/1.0",
+      "Accept": "application/json"
+    }
+  },
+  "variables": {
+    "API_VERSION": "v1",
+    "DOMAIN": "jsonplaceholder.typicode.com"
+  },
+  "environments": {
+    "development": {
+      "name": "Development",
+      "baseURL": "http://localhost:3000/api/${API_VERSION}",
+      "headers": {
+        "X-Environment": "dev"
+      }
+    },
+    "testing": {
+      "name": "Testing",
+      "baseURL": "https://${DOMAIN}",
+      "headers": {
+        "X-Environment": "test"
+      },
+      "timeout": 10000
+    },
+    "production": {
+      "name": "Production",
+      "baseURL": "https://api.production.com/${API_VERSION}",
+      "auth": {
+        "type": "bearer",
+        "token": "${PROD_API_TOKEN}"
+      },
+      "headers": {
+        "X-Environment": "production"
+      },
+      "timeout": 60000,
+      "retryAttempts": 3
+    }
+  }
+}

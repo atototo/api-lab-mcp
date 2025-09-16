@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "api-forge": {
+      "command": "node",
+      "args": [
+        "/Users/winter.e/easy-work/api-forge/dist/mcp/server.js"
+      ],
+      "env": {}
+    }
+  }
+}

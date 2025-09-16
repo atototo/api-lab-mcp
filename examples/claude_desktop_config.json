@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "api-forge": {
+      "command": "node",
+      "args": [
+        "/Users/YOUR_USERNAME/easy-work/api-forge/dist/mcp/server.js"
+      ],
+      "env": {
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "INFO"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export type AuthType = 'bearer' | 'basic' | 'apikey' | 'oauth2';
+export type AuthType = 'bearer' | 'basic' | 'apikey' | 'oauth2' | 'session';
 
 export interface BearerAuthConfig {
   type: 'bearer';
@@ -33,11 +33,18 @@ export interface OAuth2Config {
   grantType?: 'client_credentials' | 'authorization_code' | 'refresh_token';
 }
 
+export interface SessionAuthConfig {
+  type: 'session';
+  cookies: string; // Cookie string like "JSESSIONID=ABC123; XSRF-TOKEN=xyz"
+  headers?: Record<string, string>; // Additional headers like X-XSRF-TOKEN
+}
+
 export type AuthConfig = 
   | BearerAuthConfig 
   | BasicAuthConfig 
   | ApiKeyAuthConfig 
-  | OAuth2Config;
+  | OAuth2Config
+  | SessionAuthConfig;
 
 // Zod schemas for validation
 export const BearerAuthConfigSchema = z.object({
@@ -71,11 +78,18 @@ export const OAuth2ConfigSchema = z.object({
   grantType: z.enum(['client_credentials', 'authorization_code', 'refresh_token']).optional()
 });
 
+export const SessionAuthConfigSchema = z.object({
+  type: z.literal('session'),
+  cookies: z.string().min(1),
+  headers: z.record(z.string()).optional()
+});
+
 export const AuthConfigSchema = z.discriminatedUnion('type', [
   BearerAuthConfigSchema,
   BasicAuthConfigSchema,
   ApiKeyAuthConfigSchema,
-  OAuth2ConfigSchema
+  OAuth2ConfigSchema,
+  SessionAuthConfigSchema
 ]);
 
 // Helper type for auth headers

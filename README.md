@@ -2,15 +2,28 @@
 
 Claude Desktop과 통합되는 API 테스팅 실험실 - 강력한 MCP (Model Context Protocol) 서버입니다.
 
+## 빠른 설치
+
+Claude Code에 추가:
+
+```bash
+# npm을 통해 전역 설치
+npm install -g api-lab-mcp
+
+# Claude Code에 추가
+claude mcp add api-lab-mcp api-lab-mcp
+```
+
 ## 주요 기능
 
 - 🚀 **HTTP 테스팅**: 모든 HTTP 메소드 지원 (GET, POST, PUT, DELETE, PATCH 등)
-- 🔐 **인증**: Bearer 토큰, API 키, Basic 인증 지원
+- 🔐 **인증**: Bearer 토큰, API 키, Basic 인증, 세션 기반 인증 지원
 - ⏱️ **성능 메트릭**: 응답 시간 및 크기 추적
 - 🛠️ **쉬운 통합**: Claude Desktop과 간단한 설정
 - 📊 **상세한 응답**: 헤더, 본문, 메트릭을 포함한 포괄적인 테스트 결과
+- 🍪 **세션 관리**: 쿠키 및 CSRF 토큰을 통한 세션 기반 인증
 
-## 설치
+## 로컬에서 개발
 
 1. 저장소 클론:
 ```bash

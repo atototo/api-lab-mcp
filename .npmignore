@@ -1,0 +1,45 @@
+# Source files
+src/
+tests/
+examples/
+docs/
+
+# TypeScript files
+*.ts
+!*.d.ts
+tsconfig.json
+
+# Development files
+.env
+.env.*
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+
+# Git files
+.git/
+.gitignore
+
+# Build artifacts
+node_modules/
+coverage/
+.nyc_output/
+
+# Test files
+test-*.js
+test-*.sh
+*.test.ts
+*.spec.ts
+jest.config.js
+
+# Documentation
+*.md
+!README.md
+
+# Other
+.DS_Store
+Thumbs.db
+.claude.json
+plan.md
+TODO.md

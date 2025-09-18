@@ -1,7 +1,10 @@
 {
-  "name": "api-forge",
+  "name": "api-lab-mcp",
   "version": "0.2.0",
   "main": "dist/mcp/server.js",
+  "bin": {
+    "api-lab-mcp": "./dist/mcp/server.js"
+  },
   "scripts": {
     "dev": "tsx src/mcp/server.ts",
     "dev:http": "tsx src/mcp/http-server.ts",
@@ -19,9 +22,17 @@
     "claude",
     "http"
   ],
-  "author": "",
+  "author": "atototo",
   "license": "MIT",
-  "description": "MCP server for comprehensive API testing with Claude integration",
+  "description": "MCP server for API testing and experimentation - Your API Laboratory",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atototo/api-lab-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/atototo/api-lab-mcp/issues"
+  },
+  "homepage": "https://github.com/atototo/api-lab-mcp#readme",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/jsonpath": "^0.2.4",

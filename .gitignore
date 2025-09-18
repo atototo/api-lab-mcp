@@ -54,4 +54,6 @@ mock-responses/
 
 # Local documentation (not for public)
 docs/*.local.md
-npm-publish-guide.local.md
+npm-publish-guide.local.md# Test files
+test-session*.js
+test-session.sh

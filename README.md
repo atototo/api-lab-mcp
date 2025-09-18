@@ -1,6 +1,6 @@
-# API Forge 🔨
+# API Lab MCP 🧪
 
-Claude Desktop과 통합되는 포괄적인 API 테스트를 위한 강력한 MCP (Model Context Protocol) 서버입니다.
+Claude Desktop과 통합되는 API 테스팅 실험실 - 강력한 MCP (Model Context Protocol) 서버입니다.
 
 ## 주요 기능
 
@@ -14,8 +14,8 @@ Claude Desktop과 통합되는 포괄적인 API 테스트를 위한 강력한 MC
 
 1. 저장소 클론:
 ```bash
-git clone https://github.com/yourusername/api-forge.git
-cd api-forge
+git clone https://github.com/atototo/api-lab-mcp.git
+cd api-lab-mcp
 ```
 
 2. 의존성 설치:
@@ -49,18 +49,18 @@ node dist/mcp/server.js
 
 ### Claude Code에 추가
 
-로컬에서 개발 중인 API Forge를 Claude Code에 추가:
+로컬에서 개발 중인 API Lab MCP를 Claude Code에 추가:
 
 ```bash
 # 1. 먼저 프로젝트 빌드
-cd /path/to/api-forge
+cd /path/to/api-lab-mcp
 npm run build
 
 # 2. Claude Code 터미널에서 MCP 서버로 추가
-claude mcp add api-forge-local node /absolute/path/to/api-forge/dist/mcp/server.js
+claude mcp add api-lab-local node /absolute/path/to/api-lab-mcp/dist/mcp/server.js
 
 # 예시 (실제 프로젝트 경로로 변경)
-claude mcp add api-forge-local node ~/projects/api-forge/dist/mcp/server.js
+claude mcp add api-lab-local node ~/projects/api-lab-mcp/dist/mcp/server.js
 ```
 
 ### Claude Desktop 설정
@@ -70,10 +70,10 @@ Claude Desktop을 사용하는 경우 설정 JSON에 직접 추가:
 ```json
 {
   "mcpServers": {
-    "api-forge-local": {
+    "api-lab-local": {
       "command": "node",
       "args": [
-        "/absolute/path/to/api-forge/dist/mcp/server.js"
+        "/absolute/path/to/api-lab-mcp/dist/mcp/server.js"
       ],
       "env": {
         "NODE_ENV": "production",
@@ -95,10 +95,10 @@ Claude Desktop을 사용하는 경우 설정 JSON에 직접 추가:
 ```json
 {
   "mcpServers": {
-    "api-forge": {
+    "api-lab": {
       "command": "node",
       "args": [
-        "/절대/경로/api-forge/dist/mcp/server.js"
+        "/절대/경로/api-lab-mcp/dist/mcp/server.js"
       ],
       "env": {
         "NODE_ENV": "production",
@@ -109,7 +109,7 @@ Claude Desktop을 사용하는 경우 설정 JSON에 직접 추가:
 }
 ```
 
-`/절대/경로/api-forge`를 실제 프로젝트 디렉토리 경로로 변경하세요.
+`/절대/경로/api-lab-mcp`를 실제 프로젝트 디렉토리 경로로 변경하세요.
 
 ## 사용 예제
 
@@ -249,7 +249,7 @@ MCP 서버 명세에서 테스트를 자동 생성합니다.
 
 ### 프로젝트 구조
 ```
-api-forge/
+api-lab-mcp/
 ├── src/
 │   ├── mcp/              # MCP 서버 구현
 │   │   ├── server.ts     # 메인 MCP 서버
@@ -335,7 +335,7 @@ API 응답에 대한 복잡한 검증 규칙을 설정할 수 있습니다:
 
 ## HTTP 서버 모드
 
-API Forge는 HTTP 서버 모드로도 실행할 수 있습니다:
+API Lab MCP는 HTTP 서버 모드로도 실행할 수 있습니다:
 
 ```bash
 # HTTP 서버 시작 (포트 3000)
@@ -349,8 +349,8 @@ HTTP 엔드포인트:
 
 ## 리소스
 
-API Forge는 다음 MCP 리소스를 제공합니다:
-- `mcp://api-forge/protocol-guide` - MCP 프로토콜 가이드 및 참조 문서
+API Lab MCP는 다음 MCP 리소스를 제공합니다:
+- `mcp://api-lab/protocol-guide` - MCP 프로토콜 가이드 및 참조 문서
 
 ## 라이선스
 

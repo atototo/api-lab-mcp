@@ -1,6 +1,6 @@
 {
   "name": "api-lab-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/mcp/server.js",
   "bin": {
     "api-lab-mcp": "./dist/mcp/server.js"

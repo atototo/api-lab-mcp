@@ -13,7 +13,9 @@ import { ConfigManager } from '../core/services/ConfigManager.js';
 import { HttpTestRequest } from '../types/index.js';
 import { TestWithAssertions, testWithAssertionsToolDefinition } from './tools/testWithAssertions.js';
 import { setAuthConfigTool, handleSetAuthConfig } from './tools/setAuthConfig.js';
+import { setSessionTool, handleSetSession } from './tools/setSession.js';
 import { testWithAuthTool, handleTestWithAuth } from './tools/testWithAuth.js';
+import { testWithSessionTool, handleTestWithSession } from './tools/testWithSession.js';
 import { loadConfigTool, handleLoadConfig } from './tools/loadConfig.js';
 import { setEnvironmentTool, handleSetEnvironment } from './tools/setEnvironment.js';
 import { batchTestTool, handleBatchTest } from './tools/batchTest.js';
@@ -87,8 +89,14 @@ class MCPApiTestingServer {
           case 'set_auth_config':
             return await this.handleSetAuthConfig(args);
           
+          case 'set_session':
+            return await this.handleSetSession(args);
+          
           case 'test_with_auth':
             return await this.handleTestWithAuth(args);
+          
+          case 'test_with_session':
+            return await this.handleTestWithSession(args);
           
           case 'load_config':
             return await this.handleLoadConfig(args);
@@ -206,7 +214,9 @@ class MCPApiTestingServer {
       },
       testWithAssertionsToolDefinition,
       setAuthConfigTool,
+      setSessionTool,
       testWithAuthTool,
+      testWithSessionTool,
       loadConfigTool,
       setEnvironmentTool,
       batchTestTool,
@@ -294,10 +304,41 @@ class MCPApiTestingServer {
     };
   }
 
+  private async handleSetSession(args: any): Promise<any> {
+    const result = await handleSetSession(args, { 
+      httpClient: this.httpClient 
+    });
+    
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  }
+
   private async handleTestWithAuth(args: any): Promise<any> {
     const result = await handleTestWithAuth(args, { 
       httpClient: this.httpClient,
       validationService: this.validationService 
+    });
+    
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result, null, 2),
+        },
+      ],
+    };
+  }
+
+  private async handleTestWithSession(args: any): Promise<any> {
+    const result = await handleTestWithSession(args, { 
+      apiTestingService: this.apiTestingService,
+      httpClient: this.httpClient
     });
     
     return {

@@ -6,8 +6,10 @@ import {
   BearerAuthConfig,
   BasicAuthConfig,
   ApiKeyAuthConfig,
-  OAuth2Config
+  OAuth2Config,
+  SessionAuthConfig
 } from '../../types/auth';
+import { SessionManager } from './SessionManager';
 
 export interface OAuth2TokenResponse {
   access_token: string;
@@ -21,6 +23,7 @@ export class AuthenticationService {
   private currentAuth: AuthConfig | null = null;
   private tokenCache: Map<string, OAuth2TokenResponse> = new Map();
   private tokenExpiryTimes: Map<string, number> = new Map();
+  private sessionManager: SessionManager = new SessionManager();
 
   constructor() {}
 
@@ -88,6 +91,9 @@ export class AuthenticationService {
       case 'oauth2':
         return await this.getOAuth2Headers(auth);
       
+      case 'session':
+        return this.getSessionHeaders(auth);
+      
       default:
         throw new Error(`Unsupported auth type: ${(auth as any).type}`);
     }
@@ -123,6 +129,18 @@ export class AuthenticationService {
     return {
       [header]: value
     };
+  }
+
+  /**
+   * Get Session headers including cookies and custom headers
+   */
+  private getSessionHeaders(config: SessionAuthConfig): AuthHeaders {
+    // Store session in manager
+    const sessionId = 'current';
+    this.sessionManager.storeSession(sessionId, config.cookies, config.headers || {});
+    
+    // Get all headers including Cookie header
+    return this.sessionManager.getSessionHeaders(sessionId);
   }
 
   /**
@@ -268,6 +286,11 @@ export class AuthenticationService {
         authorizationUrl: z.string().url().optional(),
         scope: z.string().optional(),
         grantType: z.enum(['client_credentials', 'authorization_code', 'refresh_token']).optional()
+      }),
+      z.object({
+        type: z.literal('session'),
+        cookies: z.string().min(1),
+        headers: z.record(z.string()).optional()
       })
     ]).parse(config);
 
@@ -289,6 +312,8 @@ export class AuthenticationService {
     this.tokenExpiryTimes.forEach((value, key) => {
       newService.tokenExpiryTimes.set(key, value);
     });
+    // Clone session manager
+    newService.sessionManager = this.sessionManager.clone();
     return newService;
   }
 }

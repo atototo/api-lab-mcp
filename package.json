@@ -1,6 +1,6 @@
 {
   "name": "api-forge",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/mcp/server.js",
   "scripts": {
     "dev": "tsx src/mcp/server.ts",

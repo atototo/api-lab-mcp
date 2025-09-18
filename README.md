@@ -2,6 +2,56 @@
 
 Claude Desktop과 통합되는 API 테스팅 실험실 - 강력한 MCP (Model Context Protocol) 서버입니다.
 
+
+## 🎬 실제 사용 예시
+Claude Desktop에서 API Lab MCP를 사용하여 실제 API 테스트를 수행하는 모습
+
+![0918](https://github.com/user-attachments/assets/cbde1430-aa7f-480b-a5f7-28a92623e54a)
+### ✨ 이런 것들을 할 수 있어요!
+
+- **🔐 다양한 인증 방식**: Bearer 토큰, API 키, Basic 인증, 세션 기반 인증까지
+- **📊 똑똑한 응답 분석**: 상태 코드, 헤더, JSON 경로 검증을 자동으로
+- **⚡ 실시간 성능 측정**: 응답 시간, 크기, Core Web Vitals 추적
+- **🎯 대화형 API 테스트**: Claude와 자연스러운 대화로 복잡한 테스트도 간단하게
+- **📋 명세 기반 테스트 생성**: OpenAPI/Swagger 문서에서 테스트 시나리오 자동 생성
+- **🔄 배치 테스트**: 여러 API를 병렬 또는 순차 실행으로 한번에 테스트
+- **🧪 MCP 서버 테스트**: 다른 MCP 서버들의 도구와 리소스도 테스트 가능
+
+<img width="842" height="721" alt="image" src="https://github.com/user-attachments/assets/c578a7bb-1f91-4fba-a006-1afbc7bdeae7" />
+
+> API 테스트를 Claude와 대화하듯 자연스럽게! 복잡한 테스트 시나리오도 간단한 대화로 해결하세요.
+
+
+  ## 🛠️ 개발자를 위한 로컬 개발 워크플로우
+
+  ### Claude Code와 함께하는 API 개발
+
+  API Lab MCP는 로컬 개발 환경에서 Claude Code와 함께 사용할 때 진가를 발휘합니다
+
+   **🔄 실시간 API 테스트**
+  ```bash
+  # 개발 중인 서버 바로 테스트
+  "localhost:3000/api/users POST로 테스트해줘"
+
+  🐛 디버깅 도우미
+  # API 응답이 이상할 때
+  "이 API 응답이 왜 500 에러가 나는지 확인해줘"
+
+  📝 자동 문서화
+  # 테스트 결과를 바탕으로 문서 생성
+  "이 API 테스트 결과로 README 업데이트해줘"
+
+  ✅ 배포 전 검증
+  # 배치 테스트로 전체 API 상태 확인
+  "모든 엔드포인트 상태 확인하고 리포트 생성해줘"
+
+  개발 시나리오 예시
+
+  - 새 API 개발: 개발 → 즉시 테스트 → 문서화 → 커밋
+  - 버그 수정: 재현 → 테스트 → 수정 확인 → 회귀 테스트
+  - 성능 최적화: 베이스라인 측정 → 개선 → 성능 비교
+  - 배포 전 검증: 전체 API 헬스체크 → 성능 검증 → 배포 승인
+```
 ## 빠른 설치
 
 Claude Code에 추가:

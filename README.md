@@ -307,12 +307,48 @@ api-lab-mcp/
 
 ### Core Tools
 
-- **`test_http_endpoint`** - Test any HTTP endpoint with auth, headers, and body
-- **`test_with_assertions`** - Advanced testing with response validation
-- **`test_with_session`** - Session-based authentication with cookies
-- **`batch_test`** - Run multiple tests in parallel
-- **`analyze_api_spec`** - Extract info from OpenAPI/Swagger specs
-- **`generate_test_scenarios`** - Auto-generate comprehensive test suites
+#### `test_http_endpoint`
+Test any HTTP endpoint with full customization:
+- Supports all HTTP methods (GET, POST, PUT, DELETE, PATCH, etc.)
+- Custom headers and authentication (Bearer, API Key, Basic Auth)
+- Request body with JSON, form data, or raw content
+- Returns detailed response with status, headers, body, and timing
+
+#### `test_with_assertions`
+Advanced testing with intelligent response validation:
+- JSONPath expressions for nested data validation
+- Regex patterns for string matching
+- Status code verification
+- Response time thresholds
+- Custom assertion rules
+
+#### `test_with_session`
+Session-based authentication for complex flows:
+- Cookie jar management (JSESSIONID, session tokens)
+- CSRF token handling
+- Maintains session state across multiple requests
+- Perfect for testing authenticated user flows
+
+#### `batch_test`
+Run multiple API tests efficiently:
+- Parallel execution for performance
+- Sequential execution for dependent tests
+- Aggregated results and statistics
+- Ideal for regression testing and health checks
+
+#### `analyze_api_spec`
+Extract and understand OpenAPI/Swagger specifications:
+- Parse OpenAPI 2.0 and 3.0 specs
+- List all available endpoints
+- Understand request/response schemas
+- Generate sample requests automatically
+
+#### `generate_test_scenarios`
+AI-powered test generation from specs:
+- Creates comprehensive test suites from OpenAPI docs
+- Generates edge cases and boundary tests
+- Includes positive and negative test cases
+- Exports tests in various formats
 
 ### Advanced Features
 
@@ -321,6 +357,36 @@ api-lab-mcp/
 - **Performance Profiling**: Track response times and identify bottlenecks
 - **Test Generation**: Create tests from OpenAPI specs automatically
 - **MCP Discovery**: Find and test other MCP servers
+
+### Configuration Options
+
+API Lab MCP works out of the box with zero configuration. You can customize behavior through tool parameters:
+
+#### Tool-level Options
+- **`timeout`**: Request timeout in milliseconds (default: 30000) - available in all test tools
+- **`headers`**: Custom headers for requests - supports any HTTP headers
+- **`method`**: HTTP methods - GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS
+- **`body`**: Request payload - JSON, form data, or raw text
+
+#### Environment Variables (HTTP Server Mode)
+- **`PORT`**: Server port for HTTP mode (default: 3001)
+- **`LOG_LEVEL`**: Logging verbosity - ERROR, WARN, INFO, DEBUG (default: INFO)
+
+### Common Issues & Solutions
+
+**Installation Issues**
+- If `npm install` fails, try clearing npm cache: `npm cache clean --force`
+- On Windows, use `npx.cmd` instead of `npx` in the config
+
+**Connection Issues**
+- Ensure the MCP server is listed in Claude's interface (look for the 🔌 icon)
+- Restart Claude Desktop after configuration changes
+- Check firewall settings for local development
+
+**Testing Issues**
+- For large responses or slow APIs, increase timeout parameter in the tool call
+- Use session tools (`test_with_session`) for stateful API testing
+- For debugging, check Claude's developer console for detailed error messages
 
 [Full API Documentation →](https://github.com/atototo/api-lab-mcp/wiki)
 
